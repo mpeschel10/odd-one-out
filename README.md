@@ -1,2 +1,2 @@
-# peak-finder
-Unity project to learn array bisection for the peak finding algorithm.
+# odd-one-out
+Unity project to learn array bisection for finding an "odd one out" in a list of pairs.
