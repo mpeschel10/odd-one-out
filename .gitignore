@@ -9,6 +9,8 @@
 sysinfo.txt
 *.pidb.meta
 *.apk
+*.csproj
+*.sln
 # Above entries taken from, with some modification: https://stackoverflow.com/a/42701935
 
 /Logs/
