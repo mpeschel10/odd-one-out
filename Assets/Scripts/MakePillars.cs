@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class MakePillars : MonoBehaviour
+public class MakePillars : MonoBehaviour, PillarList
 {
     float[] pillarHeights = { 0.4f, 0.9f, 1f, 0.9f, 0.7f, 0.3f, 0.2f, 0.01f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1f, 0.8f, 0.5f};
     public ClickToReveal[] hiddenPillars;
@@ -33,10 +33,15 @@ public class MakePillars : MonoBehaviour
             
             PillarVisibleFlag visiblePillar = newObject.GetComponentInChildren<PillarVisibleFlag>(true);
             Vector3 s = visiblePillar.transform.localScale;
-            visiblePillar.transform.localScale = new Vector3(s.x, height, s.z);
-            visiblePillar.transform.localPosition = new Vector3(0.5f, height / 2, 0.5f);
+            visiblePillar.transform.localScale = new Vector3(s.x, height * pillarScale, s.z);
+            visiblePillar.transform.localPosition = new Vector3(0.5f, height * pillarScale / 2, 0.5f);
             
             newObject.SetActive(true);
         }
     }
+
+    public ClickToReveal Get(int i) { return hiddenPillars[i]; }
+    public int Count() { return pillarHeights.Length; }
+    public void Increment() {}
+    public void CheckWin() {}
 }

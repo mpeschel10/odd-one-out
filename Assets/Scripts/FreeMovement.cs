@@ -67,7 +67,6 @@ public class FreeMovement : MonoBehaviour
     Vector3 clickRotation;
     void OnLookStarted(InputAction.CallbackContext context)
     {
-        Debug.Log(context.phase);
         clickRotation = transform.rotation.eulerAngles;
         clickLocation = context.action.ReadValue<Vector2>();
     }
