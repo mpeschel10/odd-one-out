@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class EnableIfXR : MonoBehaviour
+public class DisableIfNotXR : MonoBehaviour
 {
     static bool? isXR;
     [SerializeField] Object target;

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RoomTracker : MonoBehaviour
 {
-    public string lastRoom = "none";
+    public GameObject lastRoom;
     public bool inRoomNow = false;
     void OnTriggerEnter(Collider other)
     {
-        lastRoom = other.gameObject.name;
+        lastRoom = other.gameObject;
         Debug.Log("Entering room " + lastRoom);
         inRoomNow = true;
     }
@@ -16,7 +16,7 @@ public class RoomTracker : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         Debug.Log("Exiting  room " + other.gameObject.name);
-        if (lastRoom == other.gameObject.name)
+        if (lastRoom == other.gameObject)
             inRoomNow = false;
     }
 }

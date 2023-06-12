@@ -44,4 +44,6 @@ public class MakePillars : MonoBehaviour, PillarList
     public int Count() { return pillarHeights.Length; }
     public void Increment() {}
     public void CheckWin() {}
+
+    public void Click(int index) {}
 }

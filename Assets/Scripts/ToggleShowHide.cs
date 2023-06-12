@@ -15,11 +15,9 @@ public class ToggleShowHide : MonoBehaviour
         toggle.onValueChanged.AddListener(delegate { ShowHide(toggle); });
     }
 
-    GameObject ruler;
+    [SerializeField] GameObject target;
     void ShowHide(Toggle change)
     {
-        if (ruler == null)
-            ruler = GameObject.FindGameObjectWithTag("GameController").GetComponent<Tags>().ruler;
-        ruler.SetActive(change.isOn);
+        target.SetActive(change.isOn);
     }
 }

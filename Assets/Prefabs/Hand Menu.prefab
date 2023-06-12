@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6601200601010905364}
   - component: {fileID: 3585160662016980905}
+  - component: {fileID: 2079982052424047829}
   m_Layer: 5
   m_Name: Hint Rulers
   m_TagString: Untagged
@@ -87,6 +88,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &2079982052424047829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539901990647354911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8497452e318eccc459cdef91074e21b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 3585160662016980905}
+  ruler: {fileID: 0}
 --- !u!1 &1597382221649027961
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8664880590515454798
 Transform:
   m_ObjectHideFlags: 0
@@ -1069,19 +1084,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4453928018529857565}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!114 &4453928018529857565
 MonoBehaviour:
@@ -1095,7 +1098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8497452e318eccc459cdef91074e21b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggle: {fileID: 0}
+  toggle: {fileID: 4984853513949115701}
+  ruler: {fileID: 0}
 --- !u!1 &4984853514062878179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,7 +1882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8371083023442464729
 Transform:
   m_ObjectHideFlags: 0

@@ -14,23 +14,16 @@ public class ClickToReveal : MonoBehaviour, CameraSelector.Hoverable, CameraSele
     PillarList GetPillars() { return transform.parent.parent.gameObject.GetComponent<PillarList>(); }
     public void Click()
     {
-        PillarList pillars = GetPillars();
-        this.Reveal();
-        
-        if (revealPairs)
-        {
-            if (index > 0 && pillars.Get(index - 1).gameObject.activeSelf)
-                pillars.Get(index - 1).Reveal();
-            else if (index + 1 < pillars.Count())
-                pillars.Get(index + 1).Reveal();
-        }
+        GetPillars().Click(this.index);
     }
 
     public void Reveal()
     {
-        GetPillars().Increment();
-        gameObject.SetActive(false);
-        visiblePillar.SetActive(true);
-        GetPillars().CheckWin();
+        if (gameObject.activeSelf)
+        {
+            GetPillars().Increment();
+            gameObject.SetActive(false);
+            visiblePillar.SetActive(true);
+        }
     }
 }

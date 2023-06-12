@@ -12,7 +12,7 @@ public class MakeOddPillars : MonoBehaviour, PillarList
 
     TMP_Text costText;
     GameObject fireworkBattery;
-    int cost = 0;
+    int cost;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,9 @@ public class MakeOddPillars : MonoBehaviour, PillarList
         GameObject canonPillar = transform.GetChild(0).gameObject;
         costText = transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<TMP_Text>();
         fireworkBattery = transform.GetChild(2).gameObject;
+        
+        cost = 0; won = false;
+        UpdateCostText();
         
         canonPillar.SetActive(false);
         Vector3 ft = canonPillar.transform.position;
@@ -54,13 +57,14 @@ public class MakeOddPillars : MonoBehaviour, PillarList
 
     public void Increment() {
         cost++;
-        costText.text = "Cost: " + cost;
+        UpdateCostText();
     }
+    public void UpdateCostText() { costText.text = "Cost: " + cost; }
 
     bool InBounds(int i) { return i >= 0 && i < hiddenPillars.Length; }
     bool Revealed(int i) { return !hiddenPillars[i].gameObject.activeSelf; }
 
-    bool won = false;
+    bool won;
     public void CheckWin() {
         if (won) return;
         int windex = -1;
@@ -119,5 +123,32 @@ public class MakeOddPillars : MonoBehaviour, PillarList
             ParticleSystem.EmissionModule em = p.emission;
             em.enabled = enabled; // Why is this not a one-liner???
         }
+    }
+
+    bool hintPairs = false;
+    public void SetHintPairs(bool active) { hintPairs = active; }
+    public void Click(int index)
+    {
+        hiddenPillars[index].Reveal();
+        
+        if (hintPairs)
+        {
+            if (index > 0)
+                hiddenPillars[index - 1].Reveal();
+            else if (index + 1 < hiddenPillars.Length)
+                hiddenPillars[index + 1].Reveal();
+        }
+        CheckWin();
+    }
+
+    public void Reset()
+    {
+        foreach (ClickToReveal hiddenPillar in hiddenPillars)
+        {
+            Destroy(hiddenPillar.transform.parent.gameObject);
+        }
+        StopFireworks();
+
+        Start();
     }
 }
