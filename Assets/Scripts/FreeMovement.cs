@@ -10,17 +10,25 @@ public class FreeMovement : MonoBehaviour
     [SerializeField] float acceleration = 1.1f;
     [SerializeField] float lookSpeedX = 0.17f, lookSpeedY = 0.12f;
     InputAction move, look;
+    private Transform grabTransform;
+    [SerializeField] float selectionRange = 50f;
+    [SerializeField] LayerMask selectableMask = 64;
+
     void Start()
     {
         if (cameraTransform == null)
         {
-            Camera camera = GetComponentInChildren<Camera>();
+            GameObject camera = GetComponentInChildren<Camera>().gameObject;
             if(camera == null)
             {
                 throw new System.Exception(this + "cannot find camera component in its children or self.");
             }
             cameraTransform = camera.transform;
         }
+        
+        GameObject grabGameObject = new GameObject();
+        grabTransform = grabGameObject.transform;
+        grabTransform.SetParent(cameraTransform);
     }
 
     void Awake()
@@ -85,9 +93,10 @@ public class FreeMovement : MonoBehaviour
                 currentSpeed = 1;
             currentSpeed *= (float) System.Math.Pow(acceleration, Time.deltaTime);
             
-            Vector3 movementPlayerGets = (cameraTransform.right   * movementPlayerWants.x +
-                                        cameraTransform.up      * movementPlayerWants.y +
-                                        cameraTransform.forward * movementPlayerWants.z);
+            Transform t = cameraTransform;
+            Vector3 movementPlayerGets = (t.right   * movementPlayerWants.x +
+                                          t.up      * movementPlayerWants.y +
+                                          t.forward * movementPlayerWants.z);
             movementPlayerGets *= Time.deltaTime * speed * currentSpeed;
             transform.Translate(movementPlayerGets, Space.World);
         } else {
@@ -100,6 +109,95 @@ public class FreeMovement : MonoBehaviour
             float yRotation = lookPlayerWants.x * lookSpeedX;
             Quaternion newRotation = Quaternion.Euler(clickRotation.x + xRotation, clickRotation.y + yRotation, clickRotation.z);
             transform.rotation = newRotation;
+        }
+        
+        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hitInfo, selectionRange, selectableMask);
+        
+        DoOutlines(hitInfo);
+        DoClicks(hitInfo);
+        DoDrags(hitInfo);
+    }
+
+
+    public interface Hoverable {
+        public void Hover(); public void Unhover();
+        public GameObject GetGameObject(); // Interfaces cannot expose instance fields...
+    }
+
+    public interface Draggable {
+        public void Grab(Transform transform); public void Ungrab();
+    }
+
+    public interface Clickable {
+        public void Click();
+    }
+
+    Hoverable hoverable;
+    void DoOutlines(RaycastHit hitInfo)
+    {
+        if ((hoverable == null && hitInfo.collider == null) ||
+            (hitInfo.collider != null && hoverable != null && hitInfo.collider.gameObject == hoverable.GetGameObject()))
+            return; // Nothing has changed, so don't flip-flop the outline.
+
+        if (hoverable != null)
+        {
+            try {
+                hoverable.Unhover();
+            } catch (System.Exception e) {
+                Debug.LogWarning(e);
+            }
+            hoverable = null;
+        }
+
+        if (hitInfo.collider != null)
+        {
+            if (hitInfo.collider.gameObject.TryGetComponent(out hoverable))
+            {
+                hoverable.Hover();
+            } else  {
+                Debug.LogError("gameObject " + hitInfo.collider.gameObject + " on selectable layer has no Hoverable");
+            }
+        }
+    }
+
+    void DoClicks(RaycastHit hitInfo)
+    {
+        if (hitInfo.collider != null && Input.GetMouseButtonDown(0))
+        {
+            GameObject gameObject = hitInfo.collider.gameObject;
+            if (gameObject.TryGetComponent(out Clickable clickable))
+            {
+                clickable.Click();
+            } else {
+                return;
+            }
+        }
+    }
+
+    Draggable dragging;
+    void DoDrags(RaycastHit hitInfo)
+    {
+        if (hitInfo.collider != null && Input.GetMouseButtonDown(0))
+        {
+            if (dragging != null) // We missed a GetMouseButtonUp() somewhere; normalize.
+            {
+                dragging.Ungrab();
+                dragging = null;
+            }
+            dragging = hitInfo.collider.gameObject.GetComponentInParent<Draggable>();
+            if (dragging != null)
+            {
+                Debug.Log("Grabbed");
+                // grabTransform is child of this.transform.
+                // Fix the grab relative to the camera.
+                grabTransform.position = hitInfo.point;
+                dragging.Grab(grabTransform);
+            }
+        }
+        if (dragging != null && Input.GetMouseButtonUp(0))
+        {
+            dragging.Ungrab();
+            dragging = null;
         }
     }
 }

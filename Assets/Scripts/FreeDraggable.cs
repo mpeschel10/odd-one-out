@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FreeDraggable : MonoBehaviour, CameraSelector.Hoverable, CameraSelector.Draggable
+public class FreeDraggable : MonoBehaviour, FreeMovement.Hoverable, FreeMovement.Draggable
 {
 
     public void Hover() { gameObject.GetComponent<LayeredOutline>().AddLayer("can-drag"); }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickToReveal : MonoBehaviour, CameraSelector.Hoverable, CameraSelector.Clickable
+public class ClickToReveal : MonoBehaviour, FreeMovement.Hoverable, FreeMovement.Clickable
 {
     public void Hover() { GetComponent<LayeredOutline>().AddLayer("can-click"); }
     public void Unhover() { GetComponent<LayeredOutline>().SubtractLayer("can-click"); }

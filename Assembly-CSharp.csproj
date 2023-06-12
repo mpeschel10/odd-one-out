@@ -43,7 +43,6 @@
      <Compile Include="Assets\Scripts\PlayerRoomTracker.cs" />
      <Compile Include="Assets\Fireworks\Rocket 5\Script\Rocket5.cs" />
      <Compile Include="Assets\Wireframe\Examples\Scripts\AutoRotate.cs" />
-     <Compile Include="Assets\Scripts\CameraSelector.cs" />
      <Compile Include="Assets\Fireworks\Firecracker 1\Script\Firecracker1.cs" />
      <Compile Include="Assets\Scripts\PillarVisibleFlag.cs" />
      <Compile Include="Assets\Scripts\DisableIfXR.cs" />
