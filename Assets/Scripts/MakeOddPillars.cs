@@ -109,7 +109,9 @@ public class MakeOddPillars : MonoBehaviour, PillarList
             }
 
             ClickToReveal winningPillar = hiddenPillars[windex];
-            fireworkBattery.transform.Translate(Vector3.right * winningPillar.transform.parent.localPosition.x);
+            Vector3 old = fireworkBattery.transform.localPosition;
+            Vector3 new_ = new Vector3(winningPillar.transform.parent.localPosition.x, old.y, old.z);
+            fireworkBattery.transform.localPosition = new_;
             SetFireworks(true);
             Invoke(nameof(StopFireworks), 7);
         }
@@ -133,7 +135,8 @@ public class MakeOddPillars : MonoBehaviour, PillarList
         
         if (hintPairs)
         {
-            if (index > 0)
+            if (index > 0 &&
+                hiddenPillars[index - 1].gameObject.activeSelf) // This check makes sure if left neighbor already selected, choose right instead.
                 hiddenPillars[index - 1].Reveal();
             else if (index + 1 < hiddenPillars.Length)
                 hiddenPillars[index + 1].Reveal();

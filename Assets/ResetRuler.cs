@@ -8,16 +8,21 @@ public class ResetRuler : MonoBehaviour
     Vector3 startPosition;
     [SerializeField] GameObject rulerEnd;
     Vector3 endPosition;
-    // Start is called before the first frame update
+    
+    bool initialized = false;
     void Start()
     {
         startPosition = rulerStart.transform.position;
         endPosition = rulerEnd.transform.position;
+        initialized = true;
     }
 
     public void Reset()
     {
-        rulerStart.transform.position = startPosition;
-        rulerEnd.transform.position = endPosition;
+        if (initialized)
+        {
+            rulerStart.transform.position = startPosition;
+            rulerEnd.transform.position = endPosition;
+        }
     }
 }

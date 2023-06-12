@@ -49,7 +49,11 @@ public class CameraSelector : MonoBehaviour
 
         if (hoverable != null)
         {
-            hoverable.Unhover();
+            try {
+                hoverable.Unhover();
+            } catch (System.Exception e) {
+                Debug.LogWarning(e);
+            }
             hoverable = null;
         }
 
