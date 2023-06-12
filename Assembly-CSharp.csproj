@@ -46,6 +46,7 @@
      <Compile Include="Assets\Fireworks\Firecracker 1\Script\Firecracker1.cs" />
      <Compile Include="Assets\Scripts\PillarVisibleFlag.cs" />
      <Compile Include="Assets\Scripts\DisableIfXR.cs" />
+     <Compile Include="Assets\ResetRuler.cs" />
      <Compile Include="Assets\Scripts\Tags.cs" />
      <Compile Include="Assets\Scripts\Follower.cs" />
      <Compile Include="Assets\Scripts\LayeredOutline.cs" />
@@ -54,9 +55,9 @@
      <Compile Include="Assets\Fireworks\Firecracker 3\Script\Firecracker3.cs" />
      <Compile Include="Assets\Scripts\RoomTracker.cs" />
      <Compile Include="Assets\Scripts\FreeDraggable.cs" />
+     <Compile Include="Assets\Scripts\DuplicateScreenMenuPanel.cs" />
      <Compile Include="Assets\Fireworks\Rocket 1\Script\Rocket1.cs" />
      <Compile Include="Assets\Fireworks\Rocket 2\Script\Rocket2.cs" />
-     <Compile Include="Assets\Scripts\OutlineLayerColors.cs" />
      <Compile Include="Assets\Fireworks\Rocket 4\Script\Rocket4.cs" />
      <Compile Include="Assets\Scripts\PillarList.cs" />
      <Compile Include="Assets\Wireframe\ImageEffect\WireframeImageEffect.cs" />
@@ -64,8 +65,6 @@
      <Compile Include="Assets\Fireworks\Rocket 3\Script\Rocket3.cs" />
      <Compile Include="Assets\Scripts\RulerBodyFollower.cs" />
      <Compile Include="Assets\Scripts\MakeOddPillars.cs" />
-     <Compile Include="Assets\Scripts\DuplicateScreenMenuPanel.cs" />
-     <Compile Include="Assets\ResetRuler.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Wireframe\Shaders\WireframeTransparent.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

@@ -1994,7 +1994,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
-  m_HitClosestOnly: 0
+  m_HitClosestOnly: 1
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
   m_AutoDeselect: 0
@@ -3571,7 +3571,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
-  m_HitClosestOnly: 0
+  m_HitClosestOnly: 1
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
   m_AutoDeselect: 0
@@ -4359,8 +4359,6 @@ GameObject:
   - component: {fileID: 1780772683}
   - component: {fileID: 1780772682}
   - component: {fileID: 1780772681}
-  - component: {fileID: 1780772684}
-  - component: {fileID: 1780772685}
   - component: {fileID: 1780772687}
   - component: {fileID: 1780772686}
   - component: {fileID: 1780772688}
@@ -4547,35 +4545,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1780772684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780772679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c445d416ea7b02a46a6e7b2f404bd994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionRange: 50
-  selectableMask:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &1780772685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780772679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa5d29fafe5ba144bb0e24d7edacd1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1780772684}
 --- !u!114 &1780772686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4588,7 +4557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17e78707c000804ba618ae4b190290f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastRoom: {fileID: 0}
+  lastRoom: {fileID: 1865034669}
   inRoomNow: 0
 --- !u!65 &1780772687
 BoxCollider:
@@ -5089,6 +5058,10 @@ MonoBehaviour:
   acceleration: 1.1
   lookSpeedX: 0.17
   lookSpeedY: 0.12
+  selectionRange: 50
+  selectableMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &98515344057182415
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,6 +29,22 @@ public class FreeMovement : MonoBehaviour
         GameObject grabGameObject = new GameObject();
         grabTransform = grabGameObject.transform;
         grabTransform.SetParent(cameraTransform);
+
+        if (layerNames.Length != layerColors.Length)
+            throw new System.Exception("OutlineLayerColors: length of names " + layerNames.Length + " does not match length of colors " + layerColors.Length + ".");
+        
+        layerArray = new OutlineLayerColor[layerNames.Length];
+        layerDictionary = new Dictionary<string, OutlineLayerColor>();
+        for (int i = 0; i < layerNames.Length; i++)
+        {
+            string name = layerNames[i];
+            if (layerDictionary.ContainsKey(name)) throw new System.Exception("OutlineLayerColors: duplicate name " + name + ".");
+            
+            OutlineLayerColor layer = new OutlineLayerColor(i, name, layerColors[i]);
+            layerArray[i] = layer;
+            layerDictionary[name] = layer;
+        }
+
     }
 
     void Awake()
@@ -187,7 +203,6 @@ public class FreeMovement : MonoBehaviour
             dragging = hitInfo.collider.gameObject.GetComponentInParent<Draggable>();
             if (dragging != null)
             {
-                Debug.Log("Grabbed");
                 // grabTransform is child of this.transform.
                 // Fix the grab relative to the camera.
                 grabTransform.position = hitInfo.point;
@@ -200,4 +215,20 @@ public class FreeMovement : MonoBehaviour
             dragging = null;
         }
     }
+
+    public string[] layerNames = { "can-drag", "can-click" };
+    public Color[] layerColors = { Color.blue, Color.green };
+
+    public OutlineLayerColor[] layerArray;
+    public Dictionary<string, OutlineLayerColor> layerDictionary;
+
+    public class OutlineLayerColor
+    {
+        public int index; public string name; public Color color;
+        public OutlineLayerColor(int index, string name, Color color)
+        {
+            this.index = index; this.name = name; this.color = color;
+        }
+    }
+
 }

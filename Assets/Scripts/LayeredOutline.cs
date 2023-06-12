@@ -5,23 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(Outline))]
 public class LayeredOutline : MonoBehaviour
 {
-    OutlineLayerColors layerColors;
+    static FreeMovement freeMovement;
     int[] layerCounts;
     Outline outline;
     void Start()
     {
-        GameObject gameController = GameObject.FindGameObjectWithTag("GameController");
-        if (gameController == null) throw new System.Exception("Could not find GameController tagged object.");
-        layerColors = gameController.GetComponent<OutlineLayerColors>();
-        if (layerColors == null) throw new System.Exception("Could not find GameController tagged object with OutlineLayerColors component.");
-        layerCounts = new int[layerColors.names.Length];
+        if (freeMovement == null)
+        {
+          freeMovement = GameObject.FindAnyObjectByType<FreeMovement>();
+        }
+        layerCounts = new int[freeMovement.layerNames.Length];
 
         outline = GetComponent<Outline>();
     }
 
   public void AddLayer(string layerName)
   {
-    OutlineLayerColors.OutlineLayerColor layerColor = layerColors.dictionary[layerName];
+    FreeMovement.OutlineLayerColor layerColor = freeMovement.layerDictionary[layerName];
     layerCounts[layerColor.index]++;
     if (layerCounts[layerColor.index] == 1)
     {
@@ -31,7 +31,7 @@ public class LayeredOutline : MonoBehaviour
 
   public void SubtractLayer(string layerName)
   {
-    OutlineLayerColors.OutlineLayerColor layerColor = layerColors.dictionary[layerName];
+    FreeMovement.OutlineLayerColor layerColor = freeMovement.layerDictionary[layerName];
     if (layerCounts[layerColor.index] <= 0) throw new System.Exception("Cannot remove Outline layer " + layerName + "; there are none left.");
     layerCounts[layerColor.index]--;
     if (layerCounts[layerColor.index] == 0)
@@ -47,7 +47,7 @@ public class LayeredOutline : MonoBehaviour
       if (layerCounts[i] > 0)
       {
         outline.enabled = true;
-        outline.OutlineColor = layerColors.array[i].color;
+        outline.OutlineColor = freeMovement.layerArray[i].color;
         return;
       }
     }
