@@ -15,7 +15,7 @@ public class MenuShowHide : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    [SerializeField] GameObject peakHints;
+    // [SerializeField] GameObject peakHints;
     [SerializeField] GameObject oddOneOutHints;
 
     void FlipVisiblity(InputAction.CallbackContext context)
@@ -23,11 +23,11 @@ public class MenuShowHide : MonoBehaviour
         gameObject.SetActive(!gameObject.activeSelf);
         if (gameObject.activeSelf && roomTracker.lastRoom != null)
         {
-            peakHints.SetActive(false);
+            // peakHints.SetActive(false);
             oddOneOutHints.SetActive(false);
             if (roomTracker.lastRoom.name == "Peak Room")
             {
-                peakHints.SetActive(true);
+                // peakHints.SetActive(true);
             } else if (roomTracker.lastRoom.name == "Odd One Out Room")
             {
                 oddOneOutHints.SetActive(true);

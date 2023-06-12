@@ -45,7 +45,6 @@
      <Compile Include="Assets\Wireframe\Examples\Scripts\AutoRotate.cs" />
      <Compile Include="Assets\Scripts\CameraSelector.cs" />
      <Compile Include="Assets\Fireworks\Firecracker 1\Script\Firecracker1.cs" />
-     <Compile Include="Assets\Scripts\MakePillars.cs" />
      <Compile Include="Assets\Scripts\PillarVisibleFlag.cs" />
      <Compile Include="Assets\Scripts\DisableIfXR.cs" />
      <Compile Include="Assets\Scripts\Tags.cs" />
@@ -59,7 +58,6 @@
      <Compile Include="Assets\Fireworks\Rocket 1\Script\Rocket1.cs" />
      <Compile Include="Assets\Fireworks\Rocket 2\Script\Rocket2.cs" />
      <Compile Include="Assets\Scripts\OutlineLayerColors.cs" />
-     <Compile Include="Assets\Scripts\ToggleRevealPairs.cs" />
      <Compile Include="Assets\Fireworks\Rocket 4\Script\Rocket4.cs" />
      <Compile Include="Assets\Scripts\PillarList.cs" />
      <Compile Include="Assets\Wireframe\ImageEffect\WireframeImageEffect.cs" />
